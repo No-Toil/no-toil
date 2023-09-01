@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">no-toil</string>
+    <string name="title_activity_main">no-toil</string>
+    <string name="package_name">electron.notoil.com</string>
+    <string name="custom_url_scheme">electron.notoil.com</string>
+</resources>
