@@ -1,0 +1,92 @@
+#Sidebar {
+   /* override vars */
+   --width: 225px;
+   /* styling */
+   height: calc(100vh - 2em);
+   border-right-style: solid;
+   border-right-width: 1px;
+   padding: 1em;
+   user-select: none;
+}
+
+#Sidebar div a button,
+#Sidebar #CloseSidebarButton {
+   transition: all .2s ease-in-out;
+}
+
+#Sidebar h2 {
+   text-align: left;
+   transition: color .2s ease-in-out;
+}
+
+#Sidebar #FirestoreSidebarLink {
+   margin-top: auto;
+   transition: color .2s ease-in-out;
+}
+
+#Sidebar div a:hover button,
+#Sidebar #CloseSidebarButton:hover {
+   border-style: solid;
+   border-width: 1px;
+}
+
+/************************************************************
+ * Colors
+ ************************************************************/
+#Sidebar h2:hover,
+#Sidebar #FirestoreSidebarLink:hover,
+#Sidebar div a:hover button,
+#Sidebar #CloseSidebarButton:hover,
+#Sidebar .SidebarLink-Selected > a > button {
+   color: green;
+}
+
+@media (prefers-color-scheme: light) {
+   #Sidebar {
+      background: buttonface;
+      border-right: 1px solid lightgray;
+      box-shadow: 0 0 1em buttonface;
+   }
+
+   #Sidebar h2,
+   #Sidebar #FirestoreSidebarLink {
+      color: black;
+   }
+
+   #Sidebar div a:hover button,
+   #Sidebar #CloseSidebarButton:hover,
+   #Sidebar .SidebarLink-Selected > a > button {
+      border-color: green;
+   }
+
+   #Sidebar div a button,
+   #Sidebar #CloseSidebarButton {
+      background: #fcfcfcfc;
+      border-color: buttonface;
+   }
+}
+
+@media (prefers-color-scheme: dark) {
+   #Sidebar {
+      border-color: #15151580;
+      box-shadow: 0 0 1em #15151580;
+   }
+
+   #Sidebar h2,
+   #Sidebar #FirestoreSidebarLink,
+   #Sidebar div a:hover button,
+   #Sidebar #CloseSidebarButton:hover,
+   #Sidebar .SidebarLink-Selected > a > button {
+      color: white;
+   }
+
+   #Sidebar div a:hover button,
+   #Sidebar #CloseSidebarButton:hover,
+   #Sidebar .SidebarLink-Selected > a > button {
+      background: green;
+   }
+}
+
+@media print {
+   #Sidebar { display: none; }
+}
