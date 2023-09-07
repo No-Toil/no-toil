@@ -1,7 +1,26 @@
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
+/* The whole application */
+#App {
+   width: 100vw;
+   min-height: 100vh;
+   transition: margin-left .3s ease-in-out;
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafb);
+/* The application not including the absolute content, like the sidebar */
+.Page {
+   min-height: 100%;
+   flex: 1 0 auto;
+   flex-direction: column;
+}
+
+/* The page, not including the header or the footer */
+main {
+   width: calc(100% - 2em);
+   margin-bottom: auto;
+   padding: 1em;
+}
+
+@media print {
+   #App {
+      margin-left: 0 !important;
+   }
 }
