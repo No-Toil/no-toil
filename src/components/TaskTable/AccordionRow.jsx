@@ -3,9 +3,7 @@ import { Link, useLocation } from "react-router-dom"
 import { useMedia } from "react-use"
 import { toast } from "react-toastify"
 import { MasonryLayout, MasonryCard, ErrorBoundary } from "ehrrsn7-components"
-import {
-   setCSSProperty, statusMapNumberToName, statusMapNameToNumber, isObject
-} from "@utils"
+import { setCSSProperty, statusMapNumberToName, statusMapNameToNumber, isObject } from "@utils"
 import { Context } from "@contexts"
 import { deleteTask, post, update } from "../../firebase"
 import "./AccordionRow.css"
@@ -34,8 +32,7 @@ export function AccordionRow({ row }) {
    if (!row) return <div>'row' is undefined.</div>
 
    return <tr className="AccordionRow">
-      <td colSpan="100%"
-      style={{ padding: 0, background: dark && "var(--background-dark-secondary)" }}>
+      <td colSpan="100%" style={{ padding: 0, background: dark && "var(--background-dark-secondary)" }}>
          <MasonryLayout style={{ padding: "1em" }}>
             <MoreInfo row={row} />
             <GoToStatusButton row={row} />
