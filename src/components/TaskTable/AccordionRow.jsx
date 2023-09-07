@@ -2,11 +2,8 @@ import React from "react"
 import { Link, useLocation } from "react-router-dom"
 import { useMedia } from "react-use"
 import { toast } from "react-toastify"
-import { isObject } from "@utils"
 import { MasonryLayout, MasonryCard, ErrorBoundary } from "ehrrsn7-components"
-import {
-   setCSSProperty, statusMapNumberToName, statusMapNameToNumber
-} from "@utils"
+import { setCSSProperty, statusMapNumberToName, statusMapNameToNumber, isObject } from "@utils"
 import { Context } from "@contexts"
 import { deleteTask, post, update } from "../../firebase"
 import "./AccordionRow.css"
