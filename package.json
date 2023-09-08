@@ -2,7 +2,7 @@
    "name": "no-toil",
    "private": true,
    "type": "module",
-   "version": "0.2.0",
+   "version": "1.2.0",
    "scripts": {
       "build": "tsc && vite build",
       "dev": "vite",
