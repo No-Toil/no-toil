@@ -1,7 +1,7 @@
 import { Task } from "../firebase"
 import { toast } from "react-toastify"
 
-export function arrToCsv(data=[]) {
+export function arrToCsv(data = []) {
    try {
       if (!data || isEmptyArray(data)) throw ""
 
@@ -13,7 +13,7 @@ export function arrToCsv(data=[]) {
        * column name for csv data using Object.key() function.
        * We fetch key of object as column name for csv.
       **********************************************************************/
-     const headers = Object.keys(data[0])
+      const headers = Object.keys(data[0])
 
       /**********************************************************************
        * Using push() method we push fetched data into csvRows[] array 
@@ -105,33 +105,33 @@ export function downloadFile(filename, content) {
    // It works on all HTML5 Ready browsers as it uses the download attribute 
    // of the <a> element:
    const element = document.createElement("a")
- 
+
    // A blob is a data type that can store binary data
    // "type" is a MIME type
    // It can have a different value, based on a file you want to save
    const blob = new Blob([content], { type: "plain/text" })
- 
+
    // createObjectURL() static method creates a DOMString containing a
    // URL representing the object given in the parameter.
    const fileUrl = URL.createObjectURL(blob)
- 
+
    // setAttribute() Sets the value of an attribute on the specified element.
    element.setAttribute("href", fileUrl) //file location
    element.setAttribute("download", filename) // file name
    element.style.display = "none"
- 
+
    // use appendChild() method to move an element from one element to another
    document.body.appendChild(element)
    element.click()
- 
+
    // The removeChild() method of the Node interface removes a child node
    // from the DOM and returns the removed node
    document.body.removeChild(element)
 }
 
-export function objToArray(obj={}) {
+export function objToArray(obj = {}) {
    try {
-      return Object.keys(obj).map(key => new Task({...obj[key]}))
+      return Object.keys(obj).map(key => new Task({ ...obj[key] }))
    }
    catch (err) {
       console.warn(err)
@@ -139,27 +139,27 @@ export function objToArray(obj={}) {
    }
 }
 
-export function range({start, end}) {
+export function range({ start, end }) {
    if (!start) start = 0
    return Array.from({ length: end - start + 1 }, (_, i) => i + start)
 }
 
 export function stringToBoolean(stringValue) {
-   switch(stringValue?.toLowerCase()?.trim()){
-      case "true": 
-      case "yes": 
-      case "1": 
-      return true;
+   switch (stringValue?.toLowerCase()?.trim()) {
+      case "true":
+      case "yes":
+      case "1":
+         return true;
 
-      case "false": 
-      case "no": 
-      case "0": 
-      case null: 
+      case "false":
+      case "no":
+      case "0":
+      case null:
       case undefined:
-      return false;
+         return false;
 
-      default: 
-      return JSON.parse(stringValue);
+      default:
+         return JSON.parse(stringValue);
    }
 }
 
@@ -174,8 +174,8 @@ export function isEmptyArray(arr) {
 }
 
 export function isObject(val) {
-   if (val === null) { return false;}
-   return ( (typeof val === 'function') || (typeof val === 'object') );
+   if (val === null) { return false; }
+   return ((typeof val === 'function') || (typeof val === 'object'));
 }
 
 export function setCSSProperty(element, property, newValue) {
@@ -213,7 +213,7 @@ export function statusMapNameToNumber(name) {
    }
 }
 
-export const setSortedByCallback = ({ sortedBy, setSortedBy }, by="") => {
+export const setSortedByCallback = ({ sortedBy, setSortedBy }, by = "") => {
    const getSortedBy = (sortedBy, by) => {
       if (sortedBy == `${by}-Ascending`)
          return `${by}-Descending`
@@ -248,56 +248,56 @@ export const sortTasksBy = ({ tasks, setTasks }, by) => {
 
 export function getSortFunction(key) {
    return {
-      "id-Ascending":               sortFunctions.id.ascending,
-      "id-Descending":              sortFunctions.id.descending,
-      "Title-Ascending":            sortFunctions.Title.ascending,
-      "Title-Descending":           sortFunctions.Title.descending,
-      "Quantity-Ascending":         sortFunctions.Quantity.ascending,
-      "Quantity-Descending":        sortFunctions.Quantity.descending,
-      "Oil-Ascending":              sortFunctions.Oil.ascending,
-      "Oil-Descending":             sortFunctions.Oil.descending,
-      "HighPriority-Ascending":     sortFunctions.HighPriority.ascending,
-      "HighPriority-Descending":    sortFunctions.HighPriority.descending,
-      "Status-Ascending":           sortFunctions.Status.ascending,
-      "Status-Descending":          sortFunctions.Status.descending,
-      "Discarded-Ascending":        sortFunctions.Discarded.ascending,
-      "Discarded-Descending":       sortFunctions.Discarded.descending,
-      "LastModified-Ascending":     sortFunctions.LastModified.ascending,
-      "LastModified-Descending":    sortFunctions.LastModified.descending,
+      "id-Ascending": sortFunctions.id.ascending,
+      "id-Descending": sortFunctions.id.descending,
+      "Title-Ascending": sortFunctions.Title.ascending,
+      "Title-Descending": sortFunctions.Title.descending,
+      "Quantity-Ascending": sortFunctions.Quantity.ascending,
+      "Quantity-Descending": sortFunctions.Quantity.descending,
+      "Oil-Ascending": sortFunctions.Oil.ascending,
+      "Oil-Descending": sortFunctions.Oil.descending,
+      "HighPriority-Ascending": sortFunctions.HighPriority.ascending,
+      "HighPriority-Descending": sortFunctions.HighPriority.descending,
+      "Status-Ascending": sortFunctions.Status.ascending,
+      "Status-Descending": sortFunctions.Status.descending,
+      "Discarded-Ascending": sortFunctions.Discarded.ascending,
+      "Discarded-Descending": sortFunctions.Discarded.descending,
+      "LastModified-Ascending": sortFunctions.LastModified.ascending,
+      "LastModified-Descending": sortFunctions.LastModified.descending,
    }[key]
 }
 
 export const sortFunctions = {
    id: {
-      ascending:  (a, b) => alphaNumericSort(a, b, "id"),
+      ascending: (a, b) => alphaNumericSort(a, b, "id"),
       descending: (b, a) => alphaNumericSort(a, b, "id"),
    },
    Title: {
-      ascending:  (a, b) => alphaSort(a, b, "Title"),
+      ascending: (a, b) => alphaSort(a, b, "Title"),
       descending: (b, a) => alphaSort(a, b, "Title"),
    },
    Quantity: {
-      ascending:  (a, b) => numericSort(a, b, "Quantity"),
+      ascending: (a, b) => numericSort(a, b, "Quantity"),
       descending: (b, a) => numericSort(a, b, "Quantity"),
    },
    Oil: {
-      ascending:  (a, b) => booleanSort(a, b, "Oil"),
+      ascending: (a, b) => booleanSort(a, b, "Oil"),
       descending: (b, a) => booleanSort(a, b, "Oil"),
    },
    HighPriority: {
-      ascending:  (a, b) => booleanSort(a, b, "HighPriority"),
+      ascending: (a, b) => booleanSort(a, b, "HighPriority"),
       descending: (b, a) => booleanSort(a, b, "HighPriority"),
    },
    Status: {
-      ascending:  (a, b) => numericSort(a, b, "Status"),
+      ascending: (a, b) => numericSort(a, b, "Status"),
       descending: (b, a) => numericSort(a, b, "Status"),
    },
    Discarded: {
-      ascending:  (a, b) => booleanSort(a, b, "Discarded"),
+      ascending: (a, b) => booleanSort(a, b, "Discarded"),
       descending: (b, a) => booleanSort(a, b, "Discarded"),
    },
    LastModified: {
-      ascending:  (a, b) => timeSort(a, b, "LastModified"),
+      ascending: (a, b) => timeSort(a, b, "LastModified"),
       descending: (b, a) => timeSort(a, b, "LastModified"),
    },
 }
