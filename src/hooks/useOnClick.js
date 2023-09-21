@@ -1,38 +1,37 @@
 import React from "react";
 
 /****************************************************************************
- * ### useKeyDown()
+ * ### useOnClick()
  *
- * React Hook that binds a callback function to a keydown event of a
+ * React Hook that binds a callback function to a click event of a
  * specified element.
  *
  * @param {function} callback
- * Function to run on keydown event.
- *
- * @param {array} keys
- * Keys to bind keydown event to.
+ * Function to run on click event.
  *
  * @param {object} [props]
  * @param {element} [props.element=document]
  * @param {array} [props.modifiers=[]]
  * @param {boolean} [props.logEvent=false]
  ****************************************************************************/
-function useKeyDown(callback, keys,
-   {element=document, modifiers=[], logEvent=false}={}
-) {
+export function useOnClick(callback, { element = document, modifiers = [], logEvent = false } = {}) {
    try {
-      const onKeyDown = (event) => {
+      const onClick = (event) => {
          if (logEvent) console.log(event);
 
          const conditions = {
-            anyKeyPressed: keys.some((key) => event.code === key),
             altMatch: event.altKey === modifiers.includes("altKey"),
+            /****************************************************************
+             * note that on MacOS, the ctrlKey will cause the right click
+             * event, which will fire an onContextMenu event instead of an
+             * onClick event.
+             ****************************************************************/
             ctrlMatch: (event.metaKey || event.ctrlKey) ===
                modifiers.includes("metaKey"),
          };
 
          const allTrue = (arr) => Object.values(arr)
-            .every(condition => condition === true)
+            .every(condition => condition === true);
 
          if (!allTrue(conditions)) return;
 
@@ -41,13 +40,13 @@ function useKeyDown(callback, keys,
       };
 
       React.useEffect(() => {
-         element.addEventListener("keydown", onKeyDown);
-         return () => { element.removeEventListener("keydown", onKeyDown); };
-      }, [onKeyDown]);
+         element.addEventListener("click", onClick);
+         return () => { element.removeEventListener("click", onClick); };
+      }, [onClick]);
    }
    catch (err) {
-      console.warn("useKeyDown() error:", err);
+      console.warn("useOnClick() error:", err);
    }
-};
+}
 
-export default useKeyDown;
+export default useOnClick;

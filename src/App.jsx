@@ -3,22 +3,14 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import { SidebarContext } from "ehrrsn7-components"
 import { Sidebar } from "@components"
-import { useKeyDown } from "./hooks"
+import { useKeyDown, useOnClick } from "./hooks"
 import Pages from "@pages"
 import "./App.css"
 
 export function App() {
    const { sidebarMarginLeft } = React.useContext(SidebarContext)
    const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
-
-   // const handleCloseSidebarOnPageClick = () => closeSidebarOnPageClick(setShowSidebar)
-   // useInitializer(handleCloseSidebarOnPageClick)
-   // useInitializer(authorizeFirebaseUI)
-
-   useKeyDown(() => setShowSidebar(false), ["Escape"]);
-   useKeyDown(() => setShowSidebar(!showSidebar), ["KeyB"],
-      { modifiers: ["metaKey"] }
-   );
+   useHandleSidebar({showSidebar, setShowSidebar});
 
    return <div id="App"
    style={{ marginLeft: sidebarMarginLeft }}>
@@ -45,12 +37,17 @@ export function App() {
    </div>
 }
 
-// helper functions
-function closeSidebarOnPageClick(setShowSidebar) {
-   const handler = () => setShowSidebar(false)
-   const pageElement = document.querySelector("#Content")
-   pageElement?.addEventListener("click", handler)
-   return (() => { pageElement?.removeEventListener("click", handler) })
+// helper hooks
+function useHandleSidebar({showSidebar, setShowSidebar}) {
+   // toggle sidebar on ctrl-B
+   useKeyDown(() => setShowSidebar(!showSidebar), ["KeyB"],
+      { modifiers: ["metaKey"] });
+
+   // close sidebar on esc/non-sidebar click
+   useKeyDown(() => setShowSidebar(false), ["Escape"]);
+
+   useOnClick(() => {setShowSidebar(false)},
+      {element: document.querySelector(".Page")});
 }
 
 export default App

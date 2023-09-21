@@ -1,2 +1,9 @@
 import useKeyDown from "./useKeyDown";
-export { useKeyDown };
+import useOnClick from "./useOnClick";
+import useOnContextMenu from "./useOnContextMenu";
+
+export {
+   useKeyDown,
+   useOnClick,
+   useOnContextMenu,
+};
