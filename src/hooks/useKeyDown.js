@@ -21,8 +21,13 @@ function useKeyDown(callback, keys,
    {element=document, modifiers=[], logEvent=false}={}
 ) {
    try {
-      const onKeyDown = (event) => {
-         if (logEvent) console.log(event);
+      const onKeyDown = !element ? () => {} : (event) => {
+         if (logEvent) {
+            console.log({
+               event, callback, keys,
+               element, modifiers, logEvent
+            });
+         }
 
          const conditions = {
             anyKeyPressed: keys.some((key) => event.code === key),
@@ -41,12 +46,15 @@ function useKeyDown(callback, keys,
       };
 
       React.useEffect(() => {
-         element.addEventListener("keydown", onKeyDown);
-         return () => { element.removeEventListener("keydown", onKeyDown); };
+         // using `element?.` to prevent the need for an early return
+         element?.addEventListener("keydown", onKeyDown);
+         return () => { element?.removeEventListener("keydown", onKeyDown); };
       }, [onKeyDown]);
    }
    catch (err) {
-      console.warn("useKeyDown() error:", err);
+      console.warn("useOnContextMenu() error:", err, {
+         callback, element, modifiers, logEvent
+      });
    }
 };
 

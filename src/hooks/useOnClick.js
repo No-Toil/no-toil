@@ -16,8 +16,13 @@ import React from "react";
  ****************************************************************************/
 export function useOnClick(callback, { element = document, modifiers = [], logEvent = false } = {}) {
    try {
-      const onClick = (event) => {
-         if (logEvent) console.log(event);
+      const onClick = !element ? () => {} : (event) => {
+         if (logEvent) {
+            console.log({
+               event, callback,
+               element, modifiers, logEvent
+            });
+         }
 
          const conditions = {
             altMatch: event.altKey === modifiers.includes("altKey"),
@@ -40,12 +45,15 @@ export function useOnClick(callback, { element = document, modifiers = [], logEv
       };
 
       React.useEffect(() => {
-         element.addEventListener("click", onClick);
-         return () => { element.removeEventListener("click", onClick); };
+         // using `element?.` to prevent the need for an early return
+         element?.addEventListener("click", onClick);
+         return () => { element?.removeEventListener("click", onClick); };
       }, [onClick]);
    }
    catch (err) {
-      console.warn("useOnClick() error:", err);
+      console.warn("useOnContextMenu() error:", err, {
+         callback, element, modifiers, logEvent
+      });
    }
 }
 

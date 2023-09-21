@@ -10,7 +10,19 @@ import "./App.css"
 export function App() {
    const { sidebarMarginLeft } = React.useContext(SidebarContext)
    const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
-   useHandleSidebar({showSidebar, setShowSidebar});
+
+   // element is suddenly null, reverting
+   // useHandleSidebar({showSidebar, setShowSidebar});
+
+   // toggle sidebar on ctrl-B
+   useKeyDown(() => setShowSidebar(!showSidebar), ["KeyB"],
+      { modifiers: ["metaKey"], logEvent: true });
+
+   // close sidebar on esc/non-sidebar click
+   useKeyDown(() => setShowSidebar(false), ["Escape"], {logEvent: true});
+
+   useOnClick(() => {setShowSidebar(false)},
+      {element: document.querySelector(".Page"), logEvent: true});
 
    return <div id="App"
    style={{ marginLeft: sidebarMarginLeft }}>

@@ -17,8 +17,13 @@ export function useOnContextMenu(callback,
    { element = document, modifiers = [], logEvent = false } = {}
 ) {
    try {
-      const onContextMenu = (event) => {
-         if (logEvent) console.log(event);
+      const onContextMenu = !element ? () => {} : (event) => {
+         if (logEvent) {
+            console.log({
+               event, callback,
+               element, modifiers, logEvent
+            });
+         }
 
          const conditions = {
             altMatch: event.altKey === modifiers.includes("altKey"),
@@ -34,15 +39,18 @@ export function useOnContextMenu(callback,
       };
 
       React.useEffect(() => {
-         element.addEventListener("click", onContextMenu);
+         // using `element?.` to prevent the need for an early return
+         element?.addEventListener("click", onContextMenu);
 
          return () => {
-            element.removeEventListener("oncontextmenu", onContextMenu);
+            element?.removeEventListener("oncontextmenu", onContextMenu);
          };
       }, [onContextMenu]);
    }
    catch (err) {
-      console.warn("useOnContextMenu() error:", err);
+      console.warn("useOnContextMenu() error:", err, {
+         callback, element, modifiers, logEvent
+      });
    }
 }
 
