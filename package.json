@@ -4,8 +4,9 @@
    "type": "module",
    "version": "1.2.0",
    "scripts": {
-      "build": "tsc && tauri build",
+      "build": "tsc && vite build",
       "dev": "vite",
+      "vite": "vite",
       "server": "node server/server.js",
       "tauri": "tauri"
    },
@@ -31,7 +32,7 @@
       "url": "^0.11.1"
    },
    "devDependencies": {
-      "@tauri-apps/cli": "^1.4.0",
+      "@tauri-apps/cli": "^1.5.1",
       "@types/react": "^18.2.15",
       "@types/react-dom": "^18.2.7",
       "@vitejs/plugin-react-swc": "^3.0.0",
