@@ -1,18 +1,27 @@
 import os, sys, manage
 
-if __name__ == "__main__": 
-   
+def main():
    # "cd ../No-Toil-Task-Tracker"
    os.chdir(os.getcwd())
    os.system(f"cd {os.getcwd()}")
    print("cd ", os.getcwd())
-   
+
    try:
       # pull all code changes
       print(">> GIT")
       os.system(f"git pull")
    except:
       print(">> GIT ERROR")
+
+   try:
+      # secret file
+      secret_file_path = "djangoproject/private/secret_key.txt"
+      secret_file_found = os.path.isfile(secret_file_path)
+      if secret_file_found: print(secret_file_found)
+      else: raise Exception(f"secret_file_found: {secret_file_found}")
+   except e:
+      print("error handling secret file.")
+      print(e)
 
    try:
       # update python packages
@@ -45,3 +54,19 @@ if __name__ == "__main__":
 
    print("\nUpdate successful, press enter to exit.")
    if "win" in sys.platform: input("--") # keep window open
+
+if __name__ == "__main__":
+   try:
+      main()
+   except e:
+      # once error logging is set up, replace below with logic to forward files to repository/developer email
+      current_developer = """
+         Elijah Harrison
+         Send the error details (found above) or relevant log files to:
+         developer@ejhfotos.com
+      """
+      print("ERROR IN MAIN -- contact the developer")
+      print()
+      print(current_developer)
+      print()
+      print(e)
