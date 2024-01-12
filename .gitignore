@@ -1,29 +1,23 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# npm/vite
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+bin
+db.sqlite3
+ftp.duck
+pyvenv.cfg
+lib
+staticfiles
+Scripts
+.svn
+.vscode
+.bashrc
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# tauri
-src-tauri/Cargo.lock
-package-lock.json
+__pycache__
+*/build
+*/private
+*/node_modules
+*/migrations/*
+*/.idea
+*/.DS_Store
+*/__init__.py
+*/__pycache__
+*/*/.DS_Store
+djangoapp/package-lock.json
+*/package-lock.json

@@ -1,0 +1,23 @@
+{% load static %}
+
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <title>Loading react.js application...</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta name="theme-color" content="#FFFFFF" />
+   <meta name="description" content="Web site created using create-react-app" />
+   <link rel="manifest" href="{% static 'djangoapp/manifest.json' %}" />
+</head>
+
+<body>
+   <noscript>You need to enable JavaScript to run this app.</noscript>
+   <div id="root">
+      <!-- this will be overriden on page load-->
+      Loading application... 
+   </div>
+   <script src="{% static 'djangoapp/main.js' %}"></script>
+</body>
+
+</html>

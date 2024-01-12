@@ -1,0 +1,4 @@
+TODO: figure out how to show errors/other stuff using toasts
+TODO: implement the app -- have it be the ultimate front end for all
+   the different projects: filter bible, task tracker (add oil tasks), 
+   integration with quickbooks
