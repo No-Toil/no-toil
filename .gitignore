@@ -12,7 +12,7 @@ Scripts
 __pycache__
 */build
 */private
-*/node_modules
+**/node_modules
 */migrations/*
 */.idea
 */.DS_Store
