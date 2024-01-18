@@ -6,6 +6,7 @@
    "scripts": {
       "build": "tsc && vite build",
       "dev": "vite",
+      "vite": "vite",
       "server": "node server/server.js",
       "tauri": "tauri"
    },

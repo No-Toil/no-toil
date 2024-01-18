@@ -10,19 +10,9 @@ import "./App.css"
 export function App() {
    const { sidebarMarginLeft } = React.useContext(SidebarContext)
    const { showSidebar, setShowSidebar } = React.useContext(SidebarContext)
-
-   // element is suddenly null, reverting
-   // useHandleSidebar({showSidebar, setShowSidebar});
-
-   // toggle sidebar on ctrl-B
-   useKeyDown(() => setShowSidebar(!showSidebar), ["KeyB"],
-      { modifiers: ["metaKey"], logEvent: true });
-
-   // close sidebar on esc/non-sidebar click
-   useKeyDown(() => setShowSidebar(false), ["Escape"], {logEvent: true});
-
-   useOnClick(() => {setShowSidebar(false)},
-      {element: document.querySelector(".Page"), logEvent: true});
+   useKeyDown(() => setShowSidebar(!showSidebar), ["KeyB"], { modifiers: ["metaKey"] }); // toggle sidebar on ctrl-B
+   useKeyDown(() => setShowSidebar(false), ["Escape"]); // close sidebar on esc/non-sidebar click
+   useOnClick(() => {setShowSidebar(false)}, { element: document.querySelector(".Page") });
 
    return <div id="App"
    style={{ marginLeft: sidebarMarginLeft }}>
@@ -47,19 +37,6 @@ export function App() {
       <Sidebar />
       <ToastContainer />
    </div>
-}
-
-// helper hooks
-function useHandleSidebar({showSidebar, setShowSidebar}) {
-   // toggle sidebar on ctrl-B
-   useKeyDown(() => setShowSidebar(!showSidebar), ["KeyB"],
-      { modifiers: ["metaKey"] });
-
-   // close sidebar on esc/non-sidebar click
-   useKeyDown(() => setShowSidebar(false), ["Escape"]);
-
-   useOnClick(() => {setShowSidebar(false)},
-      {element: document.querySelector(".Page")});
 }
 
 export default App

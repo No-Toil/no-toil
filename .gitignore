@@ -27,6 +27,5 @@ dist-ssr
 *.sw?
 
 # tauri
-src-tauri/Cargo.lock
-package-lock.json
-/src/private/firebaseConfig.json
+Cargo.lock
+firebaseConfig.json
