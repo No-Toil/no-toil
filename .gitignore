@@ -1,3 +1,5 @@
+package-lock.json
+
 # Logs
 logs
 *.log
@@ -27,3 +29,4 @@ dist-ssr
 # tauri
 src-tauri/Cargo.lock
 package-lock.json
+/src/private/firebaseConfig.json
