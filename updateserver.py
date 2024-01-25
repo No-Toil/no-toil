@@ -50,16 +50,14 @@ def main():
 
    try:
       if "npm" in sys.argv[1]:
-         try:
-            # change dir to djangoapp and update npm packages
-            print(">> NPM")
-            os.chdir(os.getcwd() + "/djangoapp")
-            os.system(f"npm install npm@latest")
-            os.system(f"npm install --legacy-peer-deps")
-            os.system(f"npm outdated")
-         except Exception:
-            print(">> NPM ERROR")
-   except: pass
+         # change dir to djangoapp and update npm packages
+         print(">> NPM")
+         os.chdir(os.getcwd() + "/djangoapp")
+         os.system(f"npm install npm@latest")
+         os.system(f"npm install --legacy-peer-deps")
+         os.system(f"npm outdated")
+   except Exception:
+      print(">> NPM ERROR")
 
    print("\nUpdate successful, press enter to exit.")
    if "win" in sys.platform: input("--") # keep window open
